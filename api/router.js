@@ -10,7 +10,12 @@ const router = express.Router();
 /**
  * IP Tracker
  */
-router.get('/api/ip\*', require(__dirname + '/ip/app'));
+router.get('/api/ip/\*', (request, response, next) => {
+   response.header("Access-Control-Allow-Origin", "*");
+   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+   next();
+});
+router.get('/api/ip/\*', require(__dirname + '/ip/app'));
 
 /**
  * Invalid URL
